@@ -7,15 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		297D7CC923EDE0D300F2DFB9 /* donut.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 297D7CC823EDE0D300F2DFB9 /* donut.usdz */; };
+		299C0D5023EF37A30011833A /* bat_belt.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 299C0D4F23EF37A30011833A /* bat_belt.usdz */; };
+		299C0D5223EF57720011833A /* SlotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C0D5123EF57720011833A /* SlotComponent.swift */; };
 		29B38EF123EC342100C2FEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF023EC342100C2FEB7 /* AppDelegate.swift */; };
 		29B38EF323EC342100C2FEB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF223EC342100C2FEB7 /* ViewController.swift */; };
 		29B38EF523EC342100C2FEB7 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF423EC342100C2FEB7 /* Experience.rcproject */; };
 		29B38EF823EC342100C2FEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B38EF623EC342100C2FEB7 /* Main.storyboard */; };
 		29B38EFA23EC342400C2FEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B38EF923EC342400C2FEB7 /* Assets.xcassets */; };
 		29B38EFD23EC342400C2FEB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B38EFB23EC342400C2FEB7 /* LaunchScreen.storyboard */; };
+		29B38F0623EC353900C2FEB7 /* CustomBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38F0523EC353900C2FEB7 /* CustomBox.swift */; };
+		29B38F0923EC355600C2FEB7 /* ObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38F0823EC355600C2FEB7 /* ObjectComponent.swift */; };
+		29B38F1323EC35A000C2FEB7 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F0B23EC359C00C2FEB7 /* tv_retro.usdz */; };
+		29B38F1423EC35A000C2FEB7 /* toy_robot_vintage.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F0C23EC359D00C2FEB7 /* toy_robot_vintage.usdz */; };
+		29B38F1523EC35A000C2FEB7 /* wheelbarrow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F0D23EC359D00C2FEB7 /* wheelbarrow.usdz */; };
+		29B38F1623EC35A000C2FEB7 /* fender_stratocaster.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F0E23EC359E00C2FEB7 /* fender_stratocaster.usdz */; };
+		29B38F1723EC35A000C2FEB7 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F0F23EC359E00C2FEB7 /* toy_biplane.usdz */; };
+		29B38F1823EC35A000C2FEB7 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1023EC359F00C2FEB7 /* toy_drummer.usdz */; };
+		29B38F1923EC35A000C2FEB7 /* toy_car.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1123EC359F00C2FEB7 /* toy_car.usdz */; };
+		29B38F1A23EC35A000C2FEB7 /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1223EC35A000C2FEB7 /* flower_tulip.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		297D7CC823EDE0D300F2DFB9 /* donut.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = donut.usdz; sourceTree = "<group>"; };
+		299C0D4F23EF37A30011833A /* bat_belt.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = bat_belt.usdz; sourceTree = "<group>"; };
+		299C0D5123EF57720011833A /* SlotComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotComponent.swift; sourceTree = "<group>"; };
 		29B38EED23EC342100C2FEB7 /* BatmanMadBelt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatmanMadBelt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B38EF023EC342100C2FEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29B38EF223EC342100C2FEB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +40,16 @@
 		29B38EF923EC342400C2FEB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29B38EFC23EC342400C2FEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29B38EFE23EC342400C2FEB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29B38F0523EC353900C2FEB7 /* CustomBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBox.swift; sourceTree = "<group>"; };
+		29B38F0823EC355600C2FEB7 /* ObjectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectComponent.swift; sourceTree = "<group>"; };
+		29B38F0B23EC359C00C2FEB7 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		29B38F0C23EC359D00C2FEB7 /* toy_robot_vintage.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_robot_vintage.usdz; sourceTree = "<group>"; };
+		29B38F0D23EC359D00C2FEB7 /* wheelbarrow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = wheelbarrow.usdz; sourceTree = "<group>"; };
+		29B38F0E23EC359E00C2FEB7 /* fender_stratocaster.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = fender_stratocaster.usdz; sourceTree = "<group>"; };
+		29B38F0F23EC359E00C2FEB7 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
+		29B38F1023EC359F00C2FEB7 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
+		29B38F1123EC359F00C2FEB7 /* toy_car.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_car.usdz; sourceTree = "<group>"; };
+		29B38F1223EC35A000C2FEB7 /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,9 @@
 		29B38EEF23EC342100C2FEB7 /* BatmanMadBelt */ = {
 			isa = PBXGroup;
 			children = (
+				29B38F0A23EC355C00C2FEB7 /* Objects */,
+				29B38F0723EC353C00C2FEB7 /* Models */,
+				29B38F0423EC352300C2FEB7 /* Entities */,
 				29B38EF023EC342100C2FEB7 /* AppDelegate.swift */,
 				29B38EF223EC342100C2FEB7 /* ViewController.swift */,
 				29B38EF423EC342100C2FEB7 /* Experience.rcproject */,
@@ -65,6 +94,40 @@
 				29B38EFE23EC342400C2FEB7 /* Info.plist */,
 			);
 			path = BatmanMadBelt;
+			sourceTree = "<group>";
+		};
+		29B38F0423EC352300C2FEB7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				29B38F0523EC353900C2FEB7 /* CustomBox.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		29B38F0723EC353C00C2FEB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				29B38F0823EC355600C2FEB7 /* ObjectComponent.swift */,
+				299C0D5123EF57720011833A /* SlotComponent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		29B38F0A23EC355C00C2FEB7 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				29B38F0E23EC359E00C2FEB7 /* fender_stratocaster.usdz */,
+				29B38F1223EC35A000C2FEB7 /* flower_tulip.usdz */,
+				29B38F0F23EC359E00C2FEB7 /* toy_biplane.usdz */,
+				29B38F1123EC359F00C2FEB7 /* toy_car.usdz */,
+				29B38F1023EC359F00C2FEB7 /* toy_drummer.usdz */,
+				29B38F0C23EC359D00C2FEB7 /* toy_robot_vintage.usdz */,
+				29B38F0B23EC359C00C2FEB7 /* tv_retro.usdz */,
+				29B38F0D23EC359D00C2FEB7 /* wheelbarrow.usdz */,
+				299C0D4F23EF37A30011833A /* bat_belt.usdz */,
+				297D7CC823EDE0D300F2DFB9 /* donut.usdz */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +188,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297D7CC923EDE0D300F2DFB9 /* donut.usdz in Resources */,
 				29B38EFD23EC342400C2FEB7 /* LaunchScreen.storyboard in Resources */,
+				29B38F1A23EC35A000C2FEB7 /* flower_tulip.usdz in Resources */,
+				29B38F1623EC35A000C2FEB7 /* fender_stratocaster.usdz in Resources */,
+				29B38F1723EC35A000C2FEB7 /* toy_biplane.usdz in Resources */,
+				29B38F1423EC35A000C2FEB7 /* toy_robot_vintage.usdz in Resources */,
+				29B38F1523EC35A000C2FEB7 /* wheelbarrow.usdz in Resources */,
 				29B38EFA23EC342400C2FEB7 /* Assets.xcassets in Resources */,
+				29B38F1323EC35A000C2FEB7 /* tv_retro.usdz in Resources */,
 				29B38EF823EC342100C2FEB7 /* Main.storyboard in Resources */,
+				29B38F1823EC35A000C2FEB7 /* toy_drummer.usdz in Resources */,
+				299C0D5023EF37A30011833A /* bat_belt.usdz in Resources */,
+				29B38F1923EC35A000C2FEB7 /* toy_car.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +213,10 @@
 			files = (
 				29B38EF323EC342100C2FEB7 /* ViewController.swift in Sources */,
 				29B38EF123EC342100C2FEB7 /* AppDelegate.swift in Sources */,
+				29B38F0623EC353900C2FEB7 /* CustomBox.swift in Sources */,
+				29B38F0923EC355600C2FEB7 /* ObjectComponent.swift in Sources */,
 				29B38EF523EC342100C2FEB7 /* Experience.rcproject in Sources */,
+				299C0D5223EF57720011833A /* SlotComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
