@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		293FE05823F1D49800DEF21D /* phone_ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 293FE05723F1D49800DEF21D /* phone_ring.wav */; };
+		296533D323F1A3B00081A457 /* tune_radio.wav in Resources */ = {isa = PBXBuildFile; fileRef = 296533D223F1A3AF0081A457 /* tune_radio.wav */; };
+		296533D523F1A6BB0081A457 /* radio_tune.wav in Resources */ = {isa = PBXBuildFile; fileRef = 296533D423F1A6BB0081A457 /* radio_tune.wav */; };
+		296533D723F1A8680081A457 /* tune.wav in Resources */ = {isa = PBXBuildFile; fileRef = 296533D623F1A8670081A457 /* tune.wav */; };
 		297D7CC923EDE0D300F2DFB9 /* donut.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 297D7CC823EDE0D300F2DFB9 /* donut.usdz */; };
 		299C0D5023EF37A30011833A /* bat_belt.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 299C0D4F23EF37A30011833A /* bat_belt.usdz */; };
 		299C0D5223EF57720011833A /* SlotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C0D5123EF57720011833A /* SlotComponent.swift */; };
+		299E462423F1A11F0085A7F8 /* ukulele.wav in Resources */ = {isa = PBXBuildFile; fileRef = 299E462323F1A11F0085A7F8 /* ukulele.wav */; };
 		29B38EF123EC342100C2FEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF023EC342100C2FEB7 /* AppDelegate.swift */; };
 		29B38EF323EC342100C2FEB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF223EC342100C2FEB7 /* ViewController.swift */; };
 		29B38EF523EC342100C2FEB7 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 29B38EF423EC342100C2FEB7 /* Experience.rcproject */; };
@@ -26,12 +31,23 @@
 		29B38F1823EC35A000C2FEB7 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1023EC359F00C2FEB7 /* toy_drummer.usdz */; };
 		29B38F1923EC35A000C2FEB7 /* toy_car.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1123EC359F00C2FEB7 /* toy_car.usdz */; };
 		29B38F1A23EC35A000C2FEB7 /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29B38F1223EC35A000C2FEB7 /* flower_tulip.usdz */; };
+		29DA5BB523F0B5F000C1C017 /* radio.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BB423F0B5F000C1C017 /* radio.usdz */; };
+		29DA5BB723F0B91E00C1C017 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BB623F0B91D00C1C017 /* intro.mp3 */; };
+		29DA5BBC23F1926B00C1C017 /* radio_short.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BB923F1926A00C1C017 /* radio_short.wav */; };
+		29DA5BBD23F1926B00C1C017 /* buckle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BBA23F1926A00C1C017 /* buckle.wav */; };
+		29DA5BBE23F1926B00C1C017 /* radio_long.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BBB23F1926B00C1C017 /* radio_long.wav */; };
+		29DA5BC023F19C0A00C1C017 /* happy_song.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA5BBF23F19C0A00C1C017 /* happy_song.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		293FE05723F1D49800DEF21D /* phone_ring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = phone_ring.wav; sourceTree = "<group>"; };
+		296533D223F1A3AF0081A457 /* tune_radio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tune_radio.wav; sourceTree = "<group>"; };
+		296533D423F1A6BB0081A457 /* radio_tune.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = radio_tune.wav; sourceTree = "<group>"; };
+		296533D623F1A8670081A457 /* tune.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tune.wav; sourceTree = "<group>"; };
 		297D7CC823EDE0D300F2DFB9 /* donut.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = donut.usdz; sourceTree = "<group>"; };
 		299C0D4F23EF37A30011833A /* bat_belt.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = bat_belt.usdz; sourceTree = "<group>"; };
 		299C0D5123EF57720011833A /* SlotComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotComponent.swift; sourceTree = "<group>"; };
+		299E462323F1A11F0085A7F8 /* ukulele.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ukulele.wav; sourceTree = "<group>"; };
 		29B38EED23EC342100C2FEB7 /* BatmanMadBelt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatmanMadBelt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B38EF023EC342100C2FEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29B38EF223EC342100C2FEB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +66,12 @@
 		29B38F1023EC359F00C2FEB7 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		29B38F1123EC359F00C2FEB7 /* toy_car.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_car.usdz; sourceTree = "<group>"; };
 		29B38F1223EC35A000C2FEB7 /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
+		29DA5BB423F0B5F000C1C017 /* radio.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = radio.usdz; sourceTree = "<group>"; };
+		29DA5BB623F0B91D00C1C017 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
+		29DA5BB923F1926A00C1C017 /* radio_short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = radio_short.wav; sourceTree = "<group>"; };
+		29DA5BBA23F1926A00C1C017 /* buckle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buckle.wav; sourceTree = "<group>"; };
+		29DA5BBB23F1926B00C1C017 /* radio_long.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = radio_long.wav; sourceTree = "<group>"; };
+		29DA5BBF23F19C0A00C1C017 /* happy_song.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = happy_song.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +104,7 @@
 		29B38EEF23EC342100C2FEB7 /* BatmanMadBelt */ = {
 			isa = PBXGroup;
 			children = (
+				29DA5BB823F1912300C1C017 /* Audios */,
 				29B38F0A23EC355C00C2FEB7 /* Objects */,
 				29B38F0723EC353C00C2FEB7 /* Models */,
 				29B38F0423EC352300C2FEB7 /* Entities */,
@@ -126,8 +149,26 @@
 				29B38F0D23EC359D00C2FEB7 /* wheelbarrow.usdz */,
 				299C0D4F23EF37A30011833A /* bat_belt.usdz */,
 				297D7CC823EDE0D300F2DFB9 /* donut.usdz */,
+				29DA5BB423F0B5F000C1C017 /* radio.usdz */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		29DA5BB823F1912300C1C017 /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+				29DA5BB623F0B91D00C1C017 /* intro.mp3 */,
+				29DA5BBA23F1926A00C1C017 /* buckle.wav */,
+				29DA5BBB23F1926B00C1C017 /* radio_long.wav */,
+				29DA5BB923F1926A00C1C017 /* radio_short.wav */,
+				29DA5BBF23F19C0A00C1C017 /* happy_song.wav */,
+				299E462323F1A11F0085A7F8 /* ukulele.wav */,
+				296533D223F1A3AF0081A457 /* tune_radio.wav */,
+				296533D423F1A6BB0081A457 /* radio_tune.wav */,
+				296533D623F1A8670081A457 /* tune.wav */,
+				293FE05723F1D49800DEF21D /* phone_ring.wav */,
+			);
+			path = Audios;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,18 +230,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				297D7CC923EDE0D300F2DFB9 /* donut.usdz in Resources */,
+				29DA5BBD23F1926B00C1C017 /* buckle.wav in Resources */,
+				296533D523F1A6BB0081A457 /* radio_tune.wav in Resources */,
+				293FE05823F1D49800DEF21D /* phone_ring.wav in Resources */,
 				29B38EFD23EC342400C2FEB7 /* LaunchScreen.storyboard in Resources */,
 				29B38F1A23EC35A000C2FEB7 /* flower_tulip.usdz in Resources */,
 				29B38F1623EC35A000C2FEB7 /* fender_stratocaster.usdz in Resources */,
+				296533D723F1A8680081A457 /* tune.wav in Resources */,
 				29B38F1723EC35A000C2FEB7 /* toy_biplane.usdz in Resources */,
 				29B38F1423EC35A000C2FEB7 /* toy_robot_vintage.usdz in Resources */,
 				29B38F1523EC35A000C2FEB7 /* wheelbarrow.usdz in Resources */,
+				29DA5BC023F19C0A00C1C017 /* happy_song.wav in Resources */,
+				296533D323F1A3B00081A457 /* tune_radio.wav in Resources */,
 				29B38EFA23EC342400C2FEB7 /* Assets.xcassets in Resources */,
 				29B38F1323EC35A000C2FEB7 /* tv_retro.usdz in Resources */,
+				299E462423F1A11F0085A7F8 /* ukulele.wav in Resources */,
+				29DA5BBE23F1926B00C1C017 /* radio_long.wav in Resources */,
+				29DA5BBC23F1926B00C1C017 /* radio_short.wav in Resources */,
 				29B38EF823EC342100C2FEB7 /* Main.storyboard in Resources */,
 				29B38F1823EC35A000C2FEB7 /* toy_drummer.usdz in Resources */,
 				299C0D5023EF37A30011833A /* bat_belt.usdz in Resources */,
+				29DA5BB523F0B5F000C1C017 /* radio.usdz in Resources */,
 				29B38F1923EC35A000C2FEB7 /* toy_car.usdz in Resources */,
+				29DA5BB723F0B91E00C1C017 /* intro.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

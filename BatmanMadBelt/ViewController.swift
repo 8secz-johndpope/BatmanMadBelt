@@ -20,11 +20,22 @@ class ViewController: UIViewController {
     
     var viewAnchor: ARAnchor!
     var viewAnchorEntity: AnchorEntity!
+    var baseAnchorEntity: AnchorEntity!
+    var batCaveScene: Experience.BatCave!
     
+    var belt: ModelEntity!
     var staticBoxes: [ModelEntity] = []
-    var movableBoxes: [ModelEntity] = []
-    var cardTemplates: [Entity] = []
-    var cards: [Entity] = []
+    var movableObjects: [ModelEntity] = []
+    var radio: Entity!
+    var phone: Entity!
+    
+    var movableObject: Entity!
+    var baseballEntity: Entity!
+    var bateriaEntity: Entity!
+    var tenisEntity: Entity!
+    var donutEntity: Entity!
+    var disqueteEntity: Entity!
+    var dogEntity: Entity!
     
     private var intObjectsInRecipe: [Int] = []
     private var modelObjectsInRecipe: [ModelEntity] = []
@@ -33,7 +44,46 @@ class ViewController: UIViewController {
     
     var targetPosition: SIMD3<Float> = [0.0,0.0,0.0]
     
-    var tapGesture: UITapGestureRecognizer?
+    private var tapGesture: UITapGestureRecognizer?
+    
+    
+    private var buckle: AudioFileResource!
+    private var buckleController: AudioPlaybackController?
+    
+    private var audio1: AudioFileResource!
+    private var audio1Controller: AudioPlaybackController?
+    
+    private var audio2: AudioFileResource!
+    private var audio2Controller: AudioPlaybackController?
+    
+    private var audio3: AudioFileResource!
+    private var audio3Controller: AudioPlaybackController?
+    
+    private var audio4: AudioFileResource!
+    private var audio4Controller: AudioPlaybackController?
+    
+    private var transition: AudioFileResource!
+    private var transitionController: AudioPlaybackController?
+    
+    private var phoneRing: AudioFileResource!
+    private var phoneRingController: AudioPlaybackController?
+    private var phoneRinging: Bool = false
+    
+    private var audioControllers: [AudioPlaybackController] = []
+    
+    private var currentAudio: Int = 0
+    
+    
+    //MARK: UIView Components
+    
+    @IBOutlet weak var beltColoredView: UIView!
+    @IBOutlet weak var beltMenuView: UIView!
+    var hiddenConstraint: NSLayoutConstraint?
+    var shownConstraint: NSLayoutConstraint?
+    
+    
+    
+    //MARK: Load Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,23 +91,32 @@ class ViewController: UIViewController {
         ObjectComponent.registerComponent()
         SlotComponent.registerComponent()
         
-        planeAnchor = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: [0.2,  0.2])
-        arView.scene.anchors.append(planeAnchor)
+        setupAnchors()
         
         arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapHandler(_:))))
         
-        buildObjects(name: "toy_biplane", movable: true)
-        buildObjects(name: "toy_car", movable: true)
-        buildObjects(name: "toy_drummer", movable: true)
-        buildObjects(name: "donut", movable: true)
-        buildObjects(name: "toy_robot_vintage", movable: true)
+//        loadBatmanItem(name: "toy_biplane", movable: true)
+//        loadBatmanItem(name: "toy_car", movable: true)
+//        loadBatmanItem(name: "toy_drummer", movable: true)
+//        loadBatmanItem(name: "donut", movable: true)
+//        loadBatmanItem(name: "toy_robot_vintage", movable: true)
+        
+        loadMovableBatmanItems(name: "baseball")
+        loadMovableBatmanItems(name: "bateria")
+        loadMovableBatmanItems(name: "disquete")
+        loadMovableBatmanItems(name: "dog")
+        loadMovableBatmanItems(name: "tenis")
+        loadMovableBatmanItems(name: "donut")
         
         setupBelt(name: "bat_belt")
+        prepareAudios()
         
-        displayAndPositionObjects(anchor: planeAnchor, listObjects: movableBoxes)
+        displayAndPositionObjects(anchor: planeAnchor, movableObjects: movableObjects)
         
         addOcclusionPlane(anchor: planeAnchor)
         addOcclusionBox(anchor: planeAnchor)
+        
+        setupInitialView()
         
         for object in modelObjectsInRecipe {
             print(object.name)
@@ -70,8 +129,7 @@ class ViewController: UIViewController {
         collisionSubs.append(arView.scene.subscribe(to: CollisionEvents.Began.self) { event in
             // Get both CustomBox entities, if either entityA or entityB isn't a CustomBox
             // then return becasue this is not the collision we're looking for
-            
-            //As far as I know, BoxA is the Entity that is touched, BoxB is the entity touching!
+            // As far as I know, BoxA is the Entity that is touched, BoxB is the entity touching!
             guard let boxA = event.entityA as? Entity, let boxB = event.entityB as? ModelEntity else {
                 return
             }
@@ -80,37 +138,123 @@ class ViewController: UIViewController {
                 return
             }
             
-            
-            if boxA.components[SlotComponent.self]!.hasObject == false {
-                print("Box A name:", boxA.name)
-                print("Box B name:", boxB.name)
+            if boxA.components[SlotComponent.self]?.hasObject == false {
                 if self.modelObjectsInRecipe[Int(boxA.name)!].name == boxB.name {
-                    print("Box A name:", boxA.name)
-                    print("Box B name:", boxB.name)
+                    
                     print("Object in list", self.modelObjectsInRecipe[Int(boxA.name)!].name)
-                    self.planeAnchor.removeChild(boxA)
+                    
                     self.fitInObject(boxA.name, slot: boxA.position)
-                    //playSound
+                    self.planeAnchor.removeChild(boxA)
+                    print("Box A name: ", boxA.name)
+                    
+                    self.buckleController?.play()
+                    let model = try! ModelEntity.loadModel(named: "toy_biplane")
+                    model.position = boxA.position
+//                    self.batCaveScene.addChild(model)
+                    print("")
+                    let cloneObject = boxB.clone(recursive: true)
+                    cloneObject.position = [0,0,0] - boxB.components[ObjectComponent.self]!.position
+                    self.planeAnchor.addChild(cloneObject)
+//                    cloneObject.transform.translation = boxA.position - cloneObject.position
+                    
+                    // posicao zero da cena menos inicial
+                    
+                    
+                    
+                    
+                    cloneObject.position = boxB.position(relativeTo: self.planeAnchor)
+                    self.planeAnchor.addChild(cloneObject)
                     boxB.position = boxB.components[ObjectComponent.self]!.position
                     boxA.components[SlotComponent.self]!.hasObject = true
                 }
                 
             }
         })
-        
         collisionSubs.append(arView.scene.subscribe(to: CollisionEvents.Ended.self) { event in
-            guard let boxA = event.entityA as? CustomBox, let boxB = event.entityB as? CustomBox else {
-                return
+        })
+        
+        collisionSubs.append(arView.scene.subscribe(to: SceneEvents.Update.self) { event in
+            let cameraPosition = self.arView.cameraTransform.translation
+            
+            let totalDistanceFromRadio = self.distance(from: cameraPosition, to:  self.radio.position(relativeTo: self.baseAnchorEntity!))
+            
+            if totalDistanceFromRadio < 0.5  {
+                
+                self.audioControllers[self.currentAudio].play()
+                
+            } else if totalDistanceFromRadio >= 0.5 {
+                
+                self.audioControllers[self.currentAudio].fade(to: .leastNonzeroMagnitude, duration: 1)
+            }
+            
+            let totalDistanceFromPhone = self.distance(from: cameraPosition, to: self.phone.position(relativeTo: self.baseAnchorEntity!))
+            if totalDistanceFromPhone < 0.5  {
+                self.phoneRingController!.play()
+                self.phoneRinging = true
+
+                
             }
         })
     }
     
-    @objc
-    func tapHandler(_ sender: UITapGestureRecognizer) {
+    //MARK: Audio Helpers
+    
+    func prepareAudios() {
+        audio1 = try! AudioFileResource.load(named: "intro.mp3")
+        audio1Controller = radio.prepareAudio(audio1)
+        
+        audio2 = try! AudioFileResource.load(named: "ukulele.wav")
+        audio2Controller = radio.prepareAudio(audio2)
+        
+        audio3 = try! AudioFileResource.load(named: "happy_song.wav")
+        audio3Controller = radio.prepareAudio(audio3)
+        
+        buckle = try! AudioFileResource.load(named: "buckle.wav")
+        buckleController = belt.prepareAudio(buckle)
+        
+        transition = try! AudioFileResource.load(named: "tune.wav")
+        transitionController = radio.prepareAudio(transition)
+        
+        phoneRing = try! AudioFileResource.load(named: "phone_ring.wav")
+        phoneRingController = phone.prepareAudio(phoneRing)
+        
+        
+        
+        audioControllers.append(audio1Controller!)
+        audioControllers.append(audio2Controller!)
+        audioControllers.append(audio3Controller!)
+        
         
     }
     
-    func buildObjects(name: String, movable: Bool) {
+    //MARK: Scene Build and Setup
+    
+    func setupAnchors() {
+        planeAnchor = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: [0.2,  0.2])
+        arView.scene.anchors.append(planeAnchor)
+        
+        let arConfiguration = ARWorldTrackingConfiguration()
+        arConfiguration.planeDetection = .horizontal
+        arView.session.run(arConfiguration, options: .resetTracking)
+        
+        batCaveScene = try! Experience.loadBatCave()
+        
+        arView.scene.anchors.append(batCaveScene)
+        radio = batCaveScene.radio
+        radio.name = "radio"
+        phone = batCaveScene.phone
+        phone.name = "phone"
+        
+        let baseAnchor = ARAnchor(transform: self.arView.cameraTransform.matrix)
+        
+        // cria AnchorEntity com base na ARAnchor
+        baseAnchorEntity = AnchorEntity(anchor: baseAnchor)
+        arView.scene.addAnchor(baseAnchorEntity)
+        
+    }
+    
+    // Load objects that are movable and adds to the list of movable objects (Batman Items)
+    func loadBatmanItem(name: String, movable: Bool) {
         let box = try! ModelEntity.loadModel(named: name)
         box.generateCollisionShapes(recursive: true)
         box.name = name
@@ -119,21 +263,83 @@ class ViewController: UIViewController {
         if movable {
             box.components[ObjectComponent.self]!.movable = true
             arView.installGestures([.all], for: box)
-            movableBoxes.append(box)
+            movableObjects.append(box)
         } else {
             staticBoxes.append(box)
         }
+    }
+    
+    func loadMovableBatmanItems(name: String) {
+//        var movableObject: Entity?
+        var position: SIMD3<Float>!
+        switch name {
+        case "baseball":
+            //Create instance of the object pre positioned on Reality Composer
+            movableObject = batCaveScene.baseball!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            baseballEntity = batCaveScene.baseball!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+        case "bateria":
+            movableObject = batCaveScene.bateria!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            bateriaEntity = batCaveScene.bateria!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+        case "disquete":
+            movableObject = batCaveScene.disquete!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            disqueteEntity = batCaveScene.disquete!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+        case "dog":
+            movableObject = batCaveScene.dog!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            dogEntity = batCaveScene.dog!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+        case "tenis":
+            movableObject = batCaveScene.tenis!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            tenisEntity = batCaveScene.tenis!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+        case "donut":
+            movableObject = batCaveScene.donut!
+            print("Baseball bat position relative to plane anchor:", movableObject.position(relativeTo: planeAnchor))
+            donutEntity = batCaveScene.donut!.clone(recursive: false)
+            position = movableObject.position(relativeTo: planeAnchor)
+            
+        default:
+            movableObject = batCaveScene.baseball!
+            position = movableObject.position(relativeTo: planeAnchor)
+        }
+        //Creates the parent Entity
+        let parentEntity = ModelEntity()
+        //Adds baseballBat to a ModelEntity
+        parentEntity.addChild(movableObject!)
+        
+        //Creates bounds based on the size of the parent
+        let childBounds = movableObject?.visualBounds(relativeTo: parentEntity)
+        //Adds collision
+        parentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds!.extents).offsetBy(translation: childBounds!.center)])
+        
+        parentEntity.name = name
+        parentEntity.components[ObjectComponent.self] = ObjectComponent()
+        parentEntity.components[ObjectComponent.self]!.kind = name
+        parentEntity.components[ObjectComponent.self]!.movable = true
+        parentEntity.components[ObjectComponent.self]!.position = position
+        arView.installGestures([.all], for: parentEntity)
+        movableObjects.append(parentEntity)
+        
+//        planeAnchor.addChild(parentEntity)
+        
         
     }
     
     func setupBelt(name: String) {
-        let belt = try! ModelEntity.loadModel(named: name)
+        belt = try! ModelEntity.loadModel(named: name)
         planeAnchor.addChild(belt)
-        
         //Generate recipe
         //Iterate over array creating each slot for objects
         //Pass on param the object that should fit in slot
         generateRecipe(4)
+        
         loadObjectsInRecipe()
         
         var initX: Float = -0.5
@@ -148,16 +354,65 @@ class ViewController: UIViewController {
         }
     }
     
-    func generateRecipe(_ n:Int) {
-        intObjectsInRecipe = (0..<n).map { _ in .random(in: 1...5) }
+    func displayAndPositionObjects(anchor: AnchorEntity, movableObjects: [ModelEntity]) {
+        for (index,box) in movableObjects.enumerated() {
+            let x = Float(index % 4) - 1.5
+            let z = Float(index / 4) + 1.5
+            
+            box.position = [x * -0.3, 0.01, z * 0.3]
+            box.components[ObjectComponent.self]!.position = box.position
+            
+            anchor.addChild(box)
+        }
+        
+        /*
+         let anchor = AnchorEntity(plane: .horizontal)
+         anchor.addChild(baseballParentEntity)
+         arView.scene.addAnchor(anchor)**/
     }
     
+    
+    
+    //MARK: Gameplay Helpers
+    
+    @objc
+    func tapHandler(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: arView)
+        if let entity =  arView.entity(at: tapLocation) {
+            print(entity.name)
+            if entity.name == "radio" {
+                audioControllers[currentAudio].stop()
+                transitionController?.play()
+                if currentAudio < audioControllers.count - 1 {
+                    currentAudio += 1
+                } else {
+                    currentAudio = 0
+                }
+            } else if entity.name == "table" {
+                toggleBeltMenu()
+                //anima banana
+                //toca audio da missao
+//                self.phoneRingController?.stop()
+//                self.phone.position = self.arView.cameraTransform.translation
+            }
+            
+        }
+//        transition1Controller?.play()
+
+    }
+    
+    func generateRecipe(_ n:Int) {
+        intObjectsInRecipe = (0..<n).map { _ in .random(in: 1...6) }
+    }
+    
+    //This func adds all the items on the recipe to then be added to the belt
     func loadObjectsInRecipe() {
         for i in intObjectsInRecipe {
-            modelObjectsInRecipe.append(Int.loadModelFromInteger(i))
+            modelObjectsInRecipe.append(loadModelFromInteger(i))
         }
     }
     
+    //This func builds the slots for the objects on the belt
     func buildSlotOnBelt(x position: Float, name: String) {
         let slot = Entity()
         slot.generateCollisionShapes(recursive: true)
@@ -181,142 +436,250 @@ class ViewController: UIViewController {
         planeAnchor.addChild(slot)
     }
     
+    //This func positions the object on the correct spot on the belt
     func fitInObject(_ slot: String, slot position: SIMD3<Float>) {
         switch slot {
         case "3":
             modelObjectsInRecipe[3].position = position
+            print(modelObjectsInRecipe[3].name)
             planeAnchor.addChild(modelObjectsInRecipe[3])
+            slotFourImageView.image = UIImage(named: modelObjectsInRecipe[3].name)
         case "2":
             modelObjectsInRecipe[2].position = position
+            print(modelObjectsInRecipe[2].name)
             planeAnchor.addChild(modelObjectsInRecipe[2])
+            slotThreeImageView.image = UIImage(named: modelObjectsInRecipe[2].name)
         case "1":
             modelObjectsInRecipe[1].position = position
+            print(modelObjectsInRecipe[1].name)
             planeAnchor.addChild(modelObjectsInRecipe[1])
+            slotTwoImageView.image = UIImage(named: modelObjectsInRecipe[1].name)
         case "0":
             modelObjectsInRecipe[0].position = position
+            print(modelObjectsInRecipe[0].name)
             planeAnchor.addChild(modelObjectsInRecipe[0])
+            slotOneImageView.image = UIImage(named: modelObjectsInRecipe[0].name)
         default:
             return
             
         }
     }
     
-    func displayAndPositionObjects(anchor: AnchorEntity, listObjects: [ModelEntity]) {
-        for (index,box) in listObjects.enumerated() {
-            let x = Float(index % 4) - 1.5
-            let z = Float(index / 4) + 1.5
-            
-            box.position = [x * -0.3, 0.01, z * 0.3]
-            box.components[ObjectComponent.self]!.position = box.position
-            anchor.addChild(box)
-        }
+    
+    
+    //MARK: Helpers
+    private func distance(from origin: SIMD3<Float>, to end: SIMD3<Float>) -> Float {
+        
+        let xD = (end.x) - (origin.x)
+        let yD = (end.y) - (origin.y)
+        let zD = (end.z) - (origin.z)
+        
+        return sqrt(xD * xD + yD * yD + zD * zD)
     }
     
+    //MARK: UIView Setup and Build
     
-    func generatePlane() {
-        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5)
-        let material = SimpleMaterial(color: .green, isMetallic: false)
-        let materialPlane = ModelEntity(mesh: planeMesh, materials: [material])
-        materialPlane.position.y = -0.001
-        planeAnchor.addChild(materialPlane)
-        arView.scene.addAnchor(planeAnchor)
+    @IBOutlet weak var beltMenuButton: UIButton!
+    
+    @IBOutlet weak var slotOne: UIView!
+    @IBOutlet weak var slotTwo: UIView!
+    @IBOutlet weak var slotThree: UIView!
+    @IBOutlet weak var slotFour: UIView!
+    
+    @IBOutlet weak var slotOneImageView: UIImageView!
+    @IBOutlet weak var slotTwoImageView: UIImageView!
+    @IBOutlet weak var slotThreeImageView: UIImageView!
+    @IBOutlet weak var slotFourImageView: UIImageView!
+    
+    
+    
+    func setupInitialView() {
+        hiddenConstraint = beltMenuView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
+        hiddenConstraint?.isActive = true
+        
+        shownConstraint = beltMenuView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        shownConstraint?.isActive = false
+        
+        beltMenuView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        beltMenuView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        beltMenuView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        
+        self.view.layoutIfNeeded()
+        
+        beltColoredView.heightAnchor.constraint(equalTo: beltMenuView.heightAnchor).isActive = true
+        beltColoredView.widthAnchor.constraint(equalTo: beltMenuView.widthAnchor).isActive = true
+        beltColoredView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        beltColoredView.centerYAnchor.constraint(equalTo: beltMenuView.centerYAnchor).isActive = true
+        
+        slotOne.trailingAnchor.constraint(equalTo: self.beltMenuView.trailingAnchor).isActive = true
+        slotOne.heightAnchor.constraint(equalTo: self.beltMenuView.heightAnchor).isActive = true
+        slotOne.widthAnchor.constraint(equalTo: self.beltMenuView.widthAnchor, multiplier: 0.2).isActive = true
+        slotOne.centerYAnchor.constraint(equalTo: self.beltMenuView.centerYAnchor).isActive = true
+        
+        slotTwo.leadingAnchor.constraint(equalTo: self.slotOne.trailingAnchor).isActive = true
+        slotTwo.heightAnchor.constraint(equalTo: self.beltMenuView.heightAnchor).isActive = true
+        slotTwo.widthAnchor.constraint(equalTo: self.beltMenuView.widthAnchor).isActive = true
+        slotTwo.centerYAnchor.constraint(equalTo: self.beltMenuView.centerYAnchor).isActive = true
+        
+        slotFour.trailingAnchor.constraint(equalTo: self.beltMenuView.trailingAnchor).isActive = true
+        slotFour.widthAnchor.constraint(equalTo: self.beltMenuView.widthAnchor, multiplier: 0.2).isActive = true
+        slotFour.heightAnchor.constraint(equalTo: self.beltMenuView.heightAnchor).isActive = true
+        slotFour.centerYAnchor.constraint(equalTo: self.beltMenuView.centerYAnchor).isActive = true
+        
+        slotThree.trailingAnchor.constraint(equalTo: self.slotFour.leadingAnchor).isActive = true
+        slotThree.widthAnchor.constraint(equalTo: self.beltMenuView.widthAnchor, multiplier: 0.2).isActive = true
+        slotThree.heightAnchor.constraint(equalTo: self.beltMenuView.heightAnchor).isActive = true
+        slotThree.centerYAnchor.constraint(equalTo: self.beltMenuView.centerYAnchor).isActive = true
+        
+        beltMenuButton.clipsToBounds = true
+        beltMenuButton.layer.cornerRadius = beltMenuButton.frame.height / 2
+        beltMenuButton.layer.borderWidth = 1
+        beltMenuButton.layer.backgroundColor = UIColor.clear.cgColor
+        
+        self.view.layoutIfNeeded()
+        
+        slotOneImageView.image = UIImage(named: "\(modelObjectsInRecipe[0].name)_x")
+        slotTwoImageView.image = UIImage(named: "\(modelObjectsInRecipe[1].name)_x")
+        slotThreeImageView.image = UIImage(named: "\(modelObjectsInRecipe[2].name)_x")
+        slotFourImageView.image = UIImage(named: "\(modelObjectsInRecipe[3].name)_x")
+        
     }
     
-    func loadCardTemplates() {
-        for index in 1...8 {
-            let assetName = "toy_robot_vintage"
-            let  cardTemplate = try! Entity.loadModel(named: assetName)
-            
-            print(type(of: cardTemplate))
-            
-            cardTemplate.generateCollisionShapes(recursive: true)
-            
-            cardTemplate.name = assetName
-            
-            cardTemplates.append(cardTemplate)
-            
-        }
+    func buildImagePlaceHolders() {
+        
     }
     
-    func createCard() {
-        for cardTemplate in cardTemplates {
-            for _ in 1...2 {
-                cards.append(cardTemplate.clone(recursive: true))
-            }
-        }
+    //MARK: UIView Methods
+    @IBAction func openBeltMenu(_ sender: Any) {
+        toggleBeltMenu()
     }
     
-    func placeCards(anchor: AnchorEntity) {
-        // Embaralha cartas
-        cards.shuffle()
-        
-        // Posiciona as cartas em uma grid de 4x4
-        for (index, card) in cards.enumerated() {
-            let x = Float(index % 4) - 1.5
-            let z = Float(index / 4) - 1.5
-            
-            // Determina a posicao de cada carta
-            card.position = [x * 0.3, 0, z * 0.3]
-            
-            // Adiciona a carta na ancora
-            anchor.addChild(card)
-            
-        }
+    func toggleBeltMenu() {
+        hiddenConstraint?.isActive.toggle()
+        shownConstraint?.isActive.toggle()
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
-    
-    
-    func addOcclusionPlane(anchor: AnchorEntity) {
-        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5)
-        
-        let material = OcclusionMaterial()
-        
-        let occlusionPlane = ModelEntity(mesh: planeMesh, materials: [material])
-        
-        occlusionPlane.position.y = -0.001
-        
-        anchor.addChild(occlusionPlane)
-    }
-    
-    
-    func addOcclusionBox(anchor: AnchorEntity) {
-        let boxSize: Float = 0.5
-        let boxMesh = MeshResource.generateBox(size: boxSize)
-        
-        let material = OcclusionMaterial()
-        
-        let occlusionBox = ModelEntity(mesh: boxMesh, materials: [material])
-        
-        occlusionBox.position.y = -boxSize / 2 - 0.001
-        
-        anchor.addChild(occlusionBox)
-    }
-}
-
-extension Int {
-    
-    static func loadModelFromInteger(_ n: Int) -> ModelEntity {
+    // Load a ModelEntity from a Integer, generated in the recipe
+    func loadModelFromInteger(_ n: Int) -> ModelEntity {
         switch n {
         case 1:
-            let model = try! ModelEntity.loadModel(named: "toy_biplane")
-            model.name = "toy_biplane"
-            return model
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(bateriaEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = bateriaEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "bateria"
+            return baseballParentEntity
         case 2:
-            let model = try! ModelEntity.loadModel(named: "toy_car")
-            model.name = "toy_car"
-            return model
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(disqueteEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = disqueteEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "disquete"
+            return baseballParentEntity
         case 3:
-            let model = try! ModelEntity.loadModel(named: "toy_drummer")
-            model.name = "toy_drummer"
-            return model
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(dogEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = dogEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "dog"
+            return baseballParentEntity
         case 4:
-            let model = try! ModelEntity.loadModel(named: "toy_robot_vintage")
-            model.name = "toy_robot_vintage"
-            return model
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(tenisEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = tenisEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "tenis"
+            return baseballParentEntity
+        case 5:
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(donutEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = donutEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "donut"
+            return baseballParentEntity
+        case 6:
+            
+//            let baseball1Entity = batCaveScene.baseball!
+            //Create instance of the object pre positioned on Reality Composer
+//            guard let baseballEntity = batCaveScene.baseball else { return ModelEntity() }
+            //Creates the parent Entity
+            let baseballParentEntity = ModelEntity()
+            //Adds baseballBat to a ModelEntity
+            baseballParentEntity.addChild(baseballEntity)
+            
+            //Creates bounds based on the size of the parent
+            let childBounds = baseballEntity.visualBounds(relativeTo: baseballParentEntity)
+            //Adds collision
+            baseballParentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: childBounds.extents).offsetBy(translation: childBounds.center)])
+            baseballParentEntity.name = "baseball"
+            return baseballParentEntity
+            
+        
         default:
             let model = try! ModelEntity.loadModel(named: "donut")
             model.name = "donut"
             return model
         }
     }
+    
+}
+
+extension ViewController {
+    
+    func generatePlane() {
+        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5)
+        let material = SimpleMaterial(color: .green, isMetallic: false)
+        
+        let materialPlane = ModelEntity(mesh: planeMesh, materials: [material])
+        materialPlane.position.y = -0.001
+        planeAnchor.addChild(materialPlane)
+        arView.scene.addAnchor(planeAnchor)
+    }
+    
+    func addOcclusionPlane(anchor: AnchorEntity) {
+        let planeMesh = MeshResource.generatePlane(width: 2, depth: 2)
+        let material = OcclusionMaterial()
+        let occlusionPlane = ModelEntity(mesh: planeMesh, materials: [material])
+        occlusionPlane.position.y = -0.001
+        anchor.addChild(occlusionPlane)
+    }
+    
+    
+    func addOcclusionBox(anchor: AnchorEntity) {
+        let boxSize: Float = 2
+        let boxMesh = MeshResource.generateBox(size: boxSize)
+        let material = OcclusionMaterial()
+        let occlusionBox = ModelEntity(mesh: boxMesh, materials: [material])
+        occlusionBox.position.y = -boxSize / 2 - 0.001
+        anchor.addChild(occlusionBox)
+    }
+    
 }

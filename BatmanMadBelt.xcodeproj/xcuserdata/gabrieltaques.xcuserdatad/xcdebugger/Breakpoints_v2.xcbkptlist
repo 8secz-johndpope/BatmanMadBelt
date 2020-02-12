@@ -14,105 +14,9 @@
             filePath = "BatmanMadBelt/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "generatePlane()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5F2D2B42-25F6-4A37-89C7-2E6CF5624C82"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F8788025-660E-4B8F-8310-8CA5B64BB3C5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "buildObjects(name:movable:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BF5DE6F5-FE99-43A6-9732-A9051B01F518"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BD2AD599-D693-4D11-95C5-483B2886F2FE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D1AD82EB-A224-4ACA-B62B-D7A524F2C70F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AE31C46D-A680-4715-8BEF-D45DFA2CCCA7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "fitInObject(_:slot:)"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
+            landmarkName = "generateRecipe(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,9 +30,9 @@
             filePath = "BatmanMadBelt/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "loadModelFromInteger(_:)"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "fitInObject(_:slot:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -197,100 +101,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DCAEE19D-349B-4F44-B89F-F6ECF6C65E46"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "fitInObject(_:slot:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DCAEE19D-349B-4F44-B89F-F6ECF6C65E46 - 9ca9300fe43fc729"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BatmanMadBelt.ViewController.fitInObject(_: Swift.String, slot: Swift.SIMD3&lt;Swift.Float&gt;) -&gt; ()"
-                  moduleName = "BatmanMadBelt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "173"
-                  endingLineNumber = "173"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "DCAEE19D-349B-4F44-B89F-F6ECF6C65E46 - 9ca9300fe43fc729"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BatmanMadBelt.ViewController.fitInObject(_: Swift.String, slot: Swift.SIMD3&lt;Swift.Float&gt;) -&gt; ()"
-                  moduleName = "BatmanMadBelt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "173"
-                  endingLineNumber = "173"
-                  offsetFromSymbolStart = "652">
-               </Location>
-               <Location
-                  uuid = "DCAEE19D-349B-4F44-B89F-F6ECF6C65E46 - 9ca9300fe43fc729"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BatmanMadBelt.ViewController.fitInObject(_: Swift.String, slot: Swift.SIMD3&lt;Swift.Float&gt;) -&gt; ()"
-                  moduleName = "BatmanMadBelt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "173"
-                  endingLineNumber = "173"
-                  offsetFromSymbolStart = "1228">
-               </Location>
-               <Location
-                  uuid = "DCAEE19D-349B-4F44-B89F-F6ECF6C65E46 - 9ca9300fe43fc729"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BatmanMadBelt.ViewController.fitInObject(_: Swift.String, slot: Swift.SIMD3&lt;Swift.Float&gt;) -&gt; ()"
-                  moduleName = "BatmanMadBelt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "173"
-                  endingLineNumber = "173"
-                  offsetFromSymbolStart = "1804">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ED1C3EEB-71B2-4A22-9245-1A876EF888E5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BatmanMadBelt/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "55A4669C-D252-464C-90B3-1EF3CE8DA61A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -298,9 +108,213 @@
             filePath = "BatmanMadBelt/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "displayAndPositionObjects(anchor:listObjects:)"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "tapHandler(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "500B5A07-97D2-42B5-B52A-92EFC5B26AA4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44A292B3-742B-4387-8395-AA3E8DF0D349"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "loadBatmanItem(name:movable:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "1388">
+               </Location>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "2448">
+               </Location>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "3508">
+               </Location>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "4568">
+               </Location>
+               <Location
+                  uuid = "A1CFC9AF-AFB3-4FE5-B2AE-0A222C205211 - 9ce079d250d4b43d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BatmanMadBelt.ViewController.loadMovableBatmanItems(name: Swift.String) -&gt; ()"
+                  moduleName = "BatmanMadBelt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gabrieltaques/Documents/Development/Swift/BatmanMadBelt/BatmanMadBelt/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "5628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE4D6616-DFE0-4AE2-A4A6-CE5F11D8F3E8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "setupBelt(name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DBB55DF-6238-448D-AC73-9F1A0A56B4E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
+            landmarkName = "generateRecipe(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "242EA3DB-BAA9-43F1-A6A9-A0401F053D2A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
+            landmarkName = "loadModelFromInteger(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37245DB9-35A6-4577-BC36-C891BB81CB38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BatmanMadBelt/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "buildSlotOnBelt(x:name:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

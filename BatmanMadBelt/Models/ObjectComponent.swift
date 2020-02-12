@@ -10,7 +10,7 @@ import RealityKit
 import UIKit
 
 struct ObjectComponent: Component, Codable {
-    var position = SIMD3<Float>(0,0,0)
+    var position: SIMD3<Float> = [0,0,0]
     var isFit = false
     var kind = ""
     var movable = false
