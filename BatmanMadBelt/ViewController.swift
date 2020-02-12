@@ -148,20 +148,10 @@ class ViewController: UIViewController {
                     print("Box A name: ", boxA.name)
                     
                     self.buckleController?.play()
-                    let model = try! ModelEntity.loadModel(named: "toy_biplane")
-                    model.position = boxA.position
-//                    self.batCaveScene.addChild(model)
-                    print("")
+
                     let cloneObject = boxB.clone(recursive: true)
-                    cloneObject.position = [0,0,0] - boxB.components[ObjectComponent.self]!.position
-                    self.planeAnchor.addChild(cloneObject)
-//                    cloneObject.transform.translation = boxA.position - cloneObject.position
-                    
-                    // posicao zero da cena menos inicial
-                    
-                    
-                    
-                    
+//                    cloneObject.position = [0,0,0] - boxB.components[ObjectComponent.self]!.position
+//                    self.planeAnchor.addChild(cloneObject)
                     cloneObject.position = boxB.position(relativeTo: self.planeAnchor)
                     self.planeAnchor.addChild(cloneObject)
                     boxB.position = boxB.components[ObjectComponent.self]!.position
