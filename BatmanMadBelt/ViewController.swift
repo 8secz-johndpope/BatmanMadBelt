@@ -68,6 +68,7 @@ class ViewController: UIViewController {
     private var phoneRing: AudioFileResource!
     private var phoneRingController: AudioPlaybackController?
     private var phoneRinging: Bool = false
+    private var phoneCalling: Bool = false
     
     private var audioControllers: [AudioPlaybackController] = []
     
@@ -81,25 +82,21 @@ class ViewController: UIViewController {
     var hiddenConstraint: NSLayoutConstraint?
     var shownConstraint: NSLayoutConstraint?
     
+    var objectsFitOnBelt: Int!
+    
     
     
     //MARK: Load Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        objectsFitOnBelt = 0
         ObjectComponent.registerComponent()
         SlotComponent.registerComponent()
         
         setupAnchors()
         
         arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapHandler(_:))))
-        
-//        loadBatmanItem(name: "toy_biplane", movable: true)
-//        loadBatmanItem(name: "toy_car", movable: true)
-//        loadBatmanItem(name: "toy_drummer", movable: true)
-//        loadBatmanItem(name: "donut", movable: true)
-//        loadBatmanItem(name: "toy_robot_vintage", movable: true)
         
         loadMovableBatmanItems(name: "baseball")
         loadMovableBatmanItems(name: "bateria")
@@ -111,7 +108,7 @@ class ViewController: UIViewController {
         setupBelt(name: "bat_belt")
         prepareAudios()
         
-        displayAndPositionObjects(anchor: planeAnchor, movableObjects: movableObjects)
+//        displayAndPositionObjects(anchor: planeAnchor, movableObjects: movableObjects)
         
         addOcclusionPlane(anchor: planeAnchor)
         addOcclusionBox(anchor: planeAnchor)
@@ -148,14 +145,22 @@ class ViewController: UIViewController {
                     print("Box A name: ", boxA.name)
                     
                     self.buckleController?.play()
-
                     let cloneObject = boxB.clone(recursive: true)
-//                    cloneObject.position = [0,0,0] - boxB.components[ObjectComponent.self]!.position
-//                    self.planeAnchor.addChild(cloneObject)
-                    cloneObject.position = boxB.position(relativeTo: self.planeAnchor)
+                    cloneObject.position =  boxA.position - boxB.components[ObjectComponent.self]!.position
+                    
                     self.planeAnchor.addChild(cloneObject)
-                    boxB.position = boxB.components[ObjectComponent.self]!.position
+                    boxB.position = [0,0,0]
                     boxA.components[SlotComponent.self]!.hasObject = true
+                    
+                    print("Posicao da caixinha menos a posicao do clone object: ", boxA.position - cloneObject.position)
+                    print("Posicao inicial do objeto: " , boxB.components[ObjectComponent.self]!.position)
+                    print("Cloned Object: Center of Visual bounds: ", cloneObject.visualBounds(relativeTo: nil).center)
+                    print("BoxA:          Center of Visual bounds: ", boxA.visualBounds(relativeTo: nil).center)
+                    self.objectsFitOnBelt += 1
+                    if self.objectsFitOnBelt == 4 {
+                        self.batCaveScene.notifications.indicarCaminho.post()
+                        self.objectsFitOnBelt = 0
+                    }
                 }
                 
             }
@@ -164,26 +169,35 @@ class ViewController: UIViewController {
         })
         
         collisionSubs.append(arView.scene.subscribe(to: SceneEvents.Update.self) { event in
+            
             let cameraPosition = self.arView.cameraTransform.translation
             
             let totalDistanceFromRadio = self.distance(from: cameraPosition, to:  self.radio.position(relativeTo: self.baseAnchorEntity!))
             
-            if totalDistanceFromRadio < 0.5  {
+            if totalDistanceFromRadio < 0.8  {
                 
                 self.audioControllers[self.currentAudio].play()
                 
             } else if totalDistanceFromRadio >= 0.5 {
                 
-                self.audioControllers[self.currentAudio].fade(to: .leastNonzeroMagnitude, duration: 1)
+                self.audioControllers[self.currentAudio].fade(to: .zero, duration: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
+                    self.audioControllers[self.currentAudio].stop()
+                }
             }
             
             let totalDistanceFromPhone = self.distance(from: cameraPosition, to: self.phone.position(relativeTo: self.baseAnchorEntity!))
-            if totalDistanceFromPhone < 0.5  {
+            if totalDistanceFromPhone < 0.5 {
                 self.phoneRingController!.play()
-                self.phoneRinging = true
-
+                if !self.phoneCalling {
+                    self.phoneRinging = true
+                }
                 
+            } else {
+                self.phoneRingController?.stop()
+                self.phoneRinging = false
             }
+            
         })
     }
     
@@ -198,18 +212,14 @@ class ViewController: UIViewController {
         
         audio3 = try! AudioFileResource.load(named: "happy_song.wav")
         audio3Controller = radio.prepareAudio(audio3)
-        
-        buckle = try! AudioFileResource.load(named: "buckle.wav")
-        buckleController = belt.prepareAudio(buckle)
-        
+    
         transition = try! AudioFileResource.load(named: "tune.wav")
         transitionController = radio.prepareAudio(transition)
         
         phoneRing = try! AudioFileResource.load(named: "phone_ring.wav")
         phoneRingController = phone.prepareAudio(phoneRing)
         
-        
-        
+    
         audioControllers.append(audio1Controller!)
         audioControllers.append(audio2Controller!)
         audioControllers.append(audio3Controller!)
@@ -230,7 +240,8 @@ class ViewController: UIViewController {
         batCaveScene = try! Experience.loadBatCave()
         
         arView.scene.anchors.append(batCaveScene)
-        radio = batCaveScene.radio
+        radio = batCaveScene.radio!
+        print(batCaveScene.radio?.name)
         radio.name = "radio"
         phone = batCaveScene.phone
         phone.name = "phone"
@@ -314,6 +325,8 @@ class ViewController: UIViewController {
         parentEntity.components[ObjectComponent.self]!.kind = name
         parentEntity.components[ObjectComponent.self]!.movable = true
         parentEntity.components[ObjectComponent.self]!.position = position
+        print("Position do parent \(name):" ,  parentEntity.components[ObjectComponent.self]!.position)
+        print("Position do movable \(name):" ,  parentEntity.components[ObjectComponent.self]!.position)
         arView.installGestures([.all], for: parentEntity)
         movableObjects.append(parentEntity)
         
@@ -324,16 +337,20 @@ class ViewController: UIViewController {
     
     func setupBelt(name: String) {
         belt = try! ModelEntity.loadModel(named: name)
-        planeAnchor.addChild(belt)
         //Generate recipe
         //Iterate over array creating each slot for objects
         //Pass on param the object that should fit in slot
         generateRecipe(4)
         
         loadObjectsInRecipe()
+        buckle = try! AudioFileResource.load(named: "buckle.wav")
+        buckleController = belt.prepareAudio(buckle)
+    }
+    
+    func addBeltToAnchor() {
+        planeAnchor.addChild(belt)
         
         var initX: Float = -0.5
-        
         for (index, _) in modelObjectsInRecipe.enumerated() {
             buildSlotOnBelt(x: initX, name: String(index))
             if index == 1 {
@@ -342,6 +359,7 @@ class ViewController: UIViewController {
             }
             initX += 0.25
         }
+        displayAndPositionObjects(anchor: planeAnchor, movableObjects: movableObjects)
     }
     
     func displayAndPositionObjects(anchor: AnchorEntity, movableObjects: [ModelEntity]) {
@@ -349,16 +367,8 @@ class ViewController: UIViewController {
             let x = Float(index % 4) - 1.5
             let z = Float(index / 4) + 1.5
             
-            box.position = [x * -0.3, 0.01, z * 0.3]
-            box.components[ObjectComponent.self]!.position = box.position
-            
             anchor.addChild(box)
         }
-        
-        /*
-         let anchor = AnchorEntity(plane: .horizontal)
-         anchor.addChild(baseballParentEntity)
-         arView.scene.addAnchor(anchor)**/
     }
     
     
@@ -378,12 +388,32 @@ class ViewController: UIViewController {
                 } else {
                     currentAudio = 0
                 }
-            } else if entity.name == "table" {
-                toggleBeltMenu()
+            } else if entity.name == "phone" {
+                 let cameraAnchor = AnchorEntity(.camera)
+                if phoneRinging && !phoneCalling {
+                   
+                    cameraAnchor.addChild(phone)
+                    arView.scene.addAnchor(cameraAnchor)
+                    
+                    
+                    phone.transform.translation = [0.12,-0.04,-0.2]
+                    phone.stopAllAnimations(recursive: true)
+                    self.phoneRingController?.stop()
+                    phoneCalling = true
+                    
+                    // playAudio()
+                } else {
+                    cameraAnchor.removeChild(phone)
+                    planeAnchor.addChild(phone)
+                    
+                    toggleBeltMenu()
+                    addBeltToAnchor()
+                    
+                }
+                
+                
                 //anima banana
                 //toca audio da missao
-//                self.phoneRingController?.stop()
-//                self.phone.position = self.arView.cameraTransform.translation
             }
             
         }
@@ -453,6 +483,7 @@ class ViewController: UIViewController {
             return
             
         }
+        
     }
     
     
@@ -524,7 +555,10 @@ class ViewController: UIViewController {
         beltMenuButton.clipsToBounds = true
         beltMenuButton.layer.cornerRadius = beltMenuButton.frame.height / 2
         beltMenuButton.layer.borderWidth = 1
-        beltMenuButton.layer.backgroundColor = UIColor.clear.cgColor
+        beltMenuView.layer.borderColor = UIColor.yellow.cgColor
+        beltMenuButton.layer.backgroundColor = UIColor.black.cgColor
+        beltMenuButton.alpha = 0.6
+        beltMenuButton.tintColor = .yellow
         
         self.view.layoutIfNeeded()
         
