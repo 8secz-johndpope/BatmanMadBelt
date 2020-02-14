@@ -3,5 +3,10 @@
     "libraryIdentifier" : "ccafdcbdff01429711be20afcf2a3b2e",
     "format" : "model",
     "displayName" : "bat_belt.usdz"
+  },
+  {
+    "libraryIdentifier" : "7eb017d1437e7015345283194be8d3dc",
+    "format" : "model",
+    "displayName" : "toy_robot_vintage.usdz"
   }
 ]

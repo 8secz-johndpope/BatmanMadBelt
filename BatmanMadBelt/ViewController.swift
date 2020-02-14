@@ -160,6 +160,10 @@ class ViewController: UIViewController {
                     if self.objectsFitOnBelt == 4 {
                         self.batCaveScene.notifications.indicarCaminho.post()
                         self.objectsFitOnBelt = 0
+                        for child in self.batCaveScene.children {
+                            self.batCaveScene.removeChild(child)
+                        }
+                        
                     }
                 }
                 
